@@ -1,0 +1,64 @@
+fc-cache
+fc-cache -fv
+
+chmod all files to 644
+chmod all .htaccess files to 644
+chmod all robots.txt files to 644
+chmod all directories to 711
+chmod all directories with directory listing (.htaccess Options +Indexes) to 755
+chmod all directories that users can upload files to, to 755 (ex: /uploads/)
+
+youtube-dl --download-archive downloaded.txt --no-post-overwrites -ciwx --audio-format mp3 -o "%(title)s.%(ext)s" [path here]
+
+stat --format '%a' file
+sudo vim /etc/mysql/debian.cnf 
+
+find . -name "*.srt" -type f -delete
+ou
+shopt -s globstar #botar no .bashrc
+rm **/*.srt
+
+echo just testing!  | nc termbin.com 9999
+cat ~/some_file.txt | nc termbin.com 9999
+ls -la | nc termbin.com 9999
+echo 'alias tb="nc termbin.com 9999"' >> .bashrc
+
+sudo find / -name php.ini
+sudo apt install php7.2-sqlite3
+
+strip -s <binario>
+du -sh <binario>
+
+vim ~/.config/gtk-3.0/gtk.css
+
+pacman -Rdsu gnome-extra
+
+LC_ALL=C lscpu | grep Virtualization
+zgrep CONFIG_KVM /proc/config.gz
+sudo pacman -S virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat
+sudo systemctl enable libvirtd.service
+sudo systemctl start libvirtd.service
+
+sudo apt-get install build-essential
+
+sudo vim /etc/udev/rules.d/50-myusb.rules
+KERNEL=="ttyACM[0]*",MODE="0666"
+
+links2 -g
+
+arp
+
+Uncompress a tar.gz file: tar zxf tarball.tar.gz
+Uncompress a tar.bz2 file: tar jxf tarball.tar.bz2
+        x - extract files
+        c - create archive
+        t - list files
+        v - verbose (list files as it processes them)
+        j - use bz2 compression
+        z - use gz compression
+        f - read or write files to disk
+
+Programming, Principles and Practice using C++ - Stroustrup 
+The C++ Language - Stroustrup 
+C++ Primer - Lippman 
+"Beginning C++17" by Ivor Horton and Peter Van Weert 

@@ -1,0 +1,13 @@
+# para instalar
+mount c /home/mrpivato/DOS/dosgames -freesize 1000
+mount d /home/mrpivato/DOS/dosgames/DFCD -t cdrom -label
+D:
+INSTALL
+DAG213
+
+# para rodar
+mount c /home/mrpivato/DOS/dosgames -freesize 1000
+mount d /home/mrpivato/DOS/dosgames/DFCD -t cdrom -label Daggerfall
+c:
+cd\dagger
+dagger

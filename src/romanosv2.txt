@@ -1,0 +1,68 @@
+algoritimo romano
+    caracter: string;
+    inteiro: temp,temp2, num;
+    leia(num);
+    temp2 <- 0;
+    se num > 399 or num < 1 então
+        escreva("numero ínvalido");
+    senao
+        temp <- num div 100;
+        num <- num - temp * 100;
+        enquanto não temp2 = temp faça
+            string <- string + "C";
+            temp2 <- temp2 + 1;
+        fim enquanto
+        temp2 <- 0;
+        
+        temp <- num div 90;
+        num <- num - temp * 90;
+        se temp = 1 então
+            string <- string + "XC";
+        fim se
+
+        temp <- num div 50;
+        num <- num - temp * 50;
+        se temp = 1 então
+            string <- string + "L";
+        fim se
+
+        temp <- num div 40;
+        num <- num - temp * 40;
+        se temp = 1 então
+            string <- string + "XL";
+        fim se
+
+        temp <- num div 10;
+        num <- num - temp * 10;
+        enquanto não temp2 = temp faça
+            string <- string + "X";
+            temp2 <- temp2 + 1;
+        fim enquanto
+        temp2 <- 0;
+
+        temp <- num div 9;
+        num <- num - temp * 9;
+        se temp = 1 então
+            string <- string + "IX";
+        fim se
+
+        temp <- num div 5;
+        num <- num - temp * 5;
+        se temp = 1 então
+            string <- string + "V";
+        fim se
+
+        temp <- num div 4;
+        num <- num - temp * 4;
+        se temp = 1 então
+            string <- string + "IV";
+        fim se
+
+        temp <- num;
+        enquanto não temp2 = temp faça
+            string <- string + "I";
+            temp2 <- temp2 + 1;
+        fim enquanto
+
+    escreva(string);
+fim algoritimo

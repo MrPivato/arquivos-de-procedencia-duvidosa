@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>C:\xampp\htdocs\P1_loja-master\mail.php.html</title>
+<meta name="Generator" content="Vim/8.0">
+<meta name="plugin-version" content="vim7.4_v2">
+<meta name="syntax" content="php">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=">
+<meta name="colorscheme" content="elflord">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #00ffff; background-color: #000000; }
+body { font-family: monospace; color: #00ffff; background-color: #000000; }
+* { font-size: 1em; }
+.Function { color: #ffffff; }
+.Repeat { color: #ffffff; }
+.Constant { color: #ff00ff; }
+.Operator { color: #ff0000; }
+.Type { color: #60ff60; font-weight: bold; }
+.PreProc { color: #ff80ff; }
+.Identifier { color: #40ffff; }
+.Statement { color: #aa4444; font-weight: bold; }
+.Comment { color: #80a0ff; }
+.Special { color: #ff0000; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Special">&lt;?php</span>
+
+<span class="Function">session_start</span><span class="Special">()</span>;
+
+<span class="Operator">$</span><span class="Identifier">dif</span> <span class="Operator">=</span> <span class="Operator">$</span><span class="Identifier">_SESSION</span><span class="Special">[</span><span class="Constant">'dif'</span><span class="Special">]</span>;
+<span class="Comment">//var_dump($dif);</span>
+
+<span class="PreProc">function</span> geraHtml<span class="Special">(</span><span class="Operator">$</span><span class="Identifier">dif</span><span class="Special">){</span>
+
+	<span class="Operator">$</span><span class="Identifier">finalHtml</span> <span class="Operator">=</span> <span class="Constant">''</span>;
+	<span class="Repeat">if</span> <span class="Special">(</span><span class="Operator">empty</span><span class="Special">(</span><span class="Operator">$</span><span class="Identifier">_SESSION</span><span class="Special">[</span><span class="Constant">'carrinho'</span><span class="Special">]))</span> <span class="Special">{</span>
+		<span class="Operator">$</span><span class="Identifier">_SESSION</span><span class="Special">[</span><span class="Constant">'carrinho'</span><span class="Special">]</span> <span class="Operator">=</span> <span class="Special">[]</span>;
+	<span class="Special">}</span><span class="Repeat">else</span><span class="Special">{</span>
+		<span class="Operator">$</span><span class="Identifier">arquivo</span> <span class="Operator">=</span> <span class="Function">fopen</span><span class="Special">(</span><span class="Constant">'produtos.txt'</span>, <span class="Constant">'r'</span><span class="Special">)</span>;
+		<span class="Repeat">while</span> <span class="Special">(</span><span class="Operator">!</span><span class="Function">feof</span><span class="Special">(</span><span class="Operator">$</span><span class="Identifier">arquivo</span><span class="Special">))</span> <span class="Special">{</span>
+			<span class="Operator">$</span><span class="Identifier">linha</span> <span class="Operator">=</span> <span class="Function">fgets</span><span class="Special">(</span><span class="Operator">$</span><span class="Identifier">arquivo</span>, <span class="Constant">1024</span><span class="Special">)</span>;
+			<span class="Operator">$</span><span class="Identifier">produto</span> <span class="Operator">=</span> <span class="Function">explode</span><span class="Special">(</span><span class="Constant">&quot;|&quot;</span>, <span class="Operator">$</span><span class="Identifier">linha</span><span class="Special">)</span>;
+			<span class="Repeat">if</span> <span class="Special">(</span><span class="Operator">!</span><span class="Function">in_array</span><span class="Special">(</span><span class="Operator">$</span><span class="Identifier">produto</span><span class="Special">[</span><span class="Constant">0</span><span class="Special">]</span>, <span class="Operator">$</span><span class="Identifier">_SESSION</span><span class="Special">[</span><span class="Constant">'carrinho'</span><span class="Special">]))</span> <span class="Special">{}</span>
+
+		<span class="Special">}</span>
+		<span class="Function">fclose</span><span class="Special">(</span><span class="Operator">$</span><span class="Identifier">arquivo</span><span class="Special">)</span>;
+	<span class="Special">}</span>
+
+	<span class="Operator">$</span><span class="Identifier">c</span> <span class="Operator">=</span> <span class="Constant">0</span>;
+
+	<span class="Repeat">foreach</span> <span class="Special">(</span><span class="Operator">$</span><span class="Identifier">_SESSION</span><span class="Special">[</span><span class="Constant">'carrinho'</span><span class="Special">]</span> <span class="Repeat">as</span> <span class="Operator">$</span><span class="Identifier">key</span> <span class="Operator">=</span><span class="Operator">&gt;</span> <span class="Operator">$</span><span class="Identifier">value</span><span class="Special">)</span> <span class="Special">{</span>
+		<span class="Operator">$</span><span class="Identifier">produtoHtml</span> <span class="Operator">=</span> <span class="Constant">&quot;</span>
+<span class="Constant">						&lt;tr&gt;</span>
+<span class="Constant">							&lt;td&gt;</span>
+<span class="Constant">								&lt;figure&gt;</span>
+<span class="Constant">									&lt;figcaption name='produto'&gt;</span><span class="Special">{</span><span class="Operator">$</span><span class="Identifier">value</span><span class="Special">[</span><span class="Constant">'nome'</span><span class="Special">]}</span><span class="Constant">&lt;/figcaption&gt;</span>
+<span class="Constant">								&lt;/figure&gt;</span>
+<span class="Constant">							&lt;/td&gt;</span>
+<span class="Constant">							&lt;td&gt;&lt;p&gt;</span><span class="Special">{</span><span class="Operator">$</span><span class="Identifier">value</span><span class="Special">[</span><span class="Constant">'descricao'</span><span class="Special">]}</span><span class="Constant">&lt;/p&gt;&lt;/td&gt;</span>
+<span class="Constant">							&lt;td&gt;&lt;p&gt;Preço: </span><span class="Special">{</span><span class="Operator">$</span><span class="Identifier">value</span><span class="Special">[</span><span class="Constant">'preco'</span><span class="Special">]}</span><span class="Constant"> Reais&lt;/p&gt;&lt;/td&gt;</span>
+<span class="Constant">							&lt;td&gt;</span>
+<span class="Constant">								Tamanho: </span><span class="Special">{</span><span class="Operator">$</span><span class="Identifier">dif</span><span class="Special">[</span><span class="Operator">$</span><span class="Identifier">c</span><span class="Special">]}</span>
+<span class="Constant">								&lt;br&gt;</span>
+<span class="Constant">								Quantidade: </span><span class="Special">{</span><span class="Operator">$</span><span class="Identifier">dif</span><span class="Special">[</span><span class="Operator">++</span><span class="Operator">$</span><span class="Identifier">c</span><span class="Special">]}</span><span class="Constant">,</span>
+<span class="Constant">								&lt;b&gt;Subtotal: &lt;u&gt;</span><span class="Special">{</span><span class="Operator">$</span><span class="Identifier">dif</span><span class="Special">[</span><span class="Operator">++</span><span class="Operator">$</span><span class="Identifier">c</span><span class="Special">]}</span><span class="Constant"> Reais&lt;/u&gt; &lt;/b&gt;</span>
+<span class="Constant">								&lt;hr&gt;</span>
+<span class="Constant">							&lt;/td&gt;</span>
+<span class="Constant">						&lt;/tr&gt;</span>
+<span class="Constant">		&quot;</span>;
+		<span class="Operator">$</span><span class="Identifier">finalHtml</span> <span class="Operator">.=</span> <span class="Operator">$</span><span class="Identifier">produtoHtml</span>;
+		<span class="Operator">$</span><span class="Identifier">c</span><span class="Operator">++</span>;
+	<span class="Special">}</span>
+
+	<span class="Operator">$</span><span class="Identifier">dadosCompradorHtml</span> <span class="Operator">=</span> <span class="Constant">&quot;</span>
+<span class="Constant">		&lt;hr&gt;</span>
+<span class="Constant">		&lt;div&gt;</span>
+<span class="Constant">			&lt;h1&gt;Nome: &lt;/h1&gt;</span>
+<span class="Constant">			&lt;p&gt;</span><span class="Special">{</span><span class="Operator">$</span><span class="Identifier">_POST</span><span class="Special">[</span><span class="Constant">'nome'</span><span class="Special">]}</span><span class="Constant">&lt;/p&gt;</span>
+<span class="Constant">			&lt;hr&gt;</span>
+<span class="Constant">			&lt;h1&gt;E-mail: &lt;/h1&gt;</span>
+<span class="Constant">			&lt;p&gt;</span><span class="Special">{</span><span class="Operator">$</span><span class="Identifier">_POST</span><span class="Special">[</span><span class="Constant">'email'</span><span class="Special">]}</span><span class="Constant">&lt;/p&gt;</span>
+<span class="Constant">			&lt;hr&gt;</span>
+<span class="Constant">			&lt;h1&gt;Cidade: &lt;/h1&gt;</span>
+<span class="Constant">			&lt;p&gt;</span><span class="Special">{</span><span class="Operator">$</span><span class="Identifier">_POST</span><span class="Special">[</span><span class="Constant">'cidade'</span><span class="Special">]}</span><span class="Constant">&lt;/p&gt;</span>
+<span class="Constant">			&lt;hr&gt;</span>
+<span class="Constant">			&lt;h1&gt;Endereço: &lt;/h1&gt;</span>
+<span class="Constant">			&lt;p&gt;</span><span class="Special">{</span><span class="Operator">$</span><span class="Identifier">_POST</span><span class="Special">[</span><span class="Constant">'endereco'</span><span class="Special">]}</span><span class="Constant">&lt;/p&gt;</span>
+<span class="Constant">			&lt;hr&gt;</span>
+<span class="Constant">			&lt;h1&gt;CEP: &lt;/h1&gt;</span>
+<span class="Constant">			&lt;p&gt;</span><span class="Special">{</span><span class="Operator">$</span><span class="Identifier">_POST</span><span class="Special">[</span><span class="Constant">'cep'</span><span class="Special">]}</span><span class="Constant">&lt;/p&gt;</span>
+<span class="Constant">			&lt;hr&gt;</span>
+<span class="Constant">			&lt;h1&gt;Operadora: &lt;/h1&gt;</span>
+<span class="Constant">			&lt;p&gt;</span><span class="Special">{</span><span class="Operator">$</span><span class="Identifier">_POST</span><span class="Special">[</span><span class="Constant">'oper'</span><span class="Special">]}</span><span class="Constant">&lt;/p&gt;</span>
+<span class="Constant">			&lt;hr&gt;</span>
+<span class="Constant">			&lt;h1&gt;Cartão: &lt;/h1&gt;</span>
+<span class="Constant">			&lt;p&gt;</span><span class="Special">{</span><span class="Operator">$</span><span class="Identifier">_POST</span><span class="Special">[</span><span class="Constant">'cartao'</span><span class="Special">]}</span><span class="Constant">&lt;/p&gt;</span>
+<span class="Constant">			&lt;hr&gt;</span>
+<span class="Constant">			&lt;h1&gt;Código: &lt;/h1&gt;</span>
+<span class="Constant">			&lt;p&gt;</span><span class="Special">{</span><span class="Operator">$</span><span class="Identifier">_POST</span><span class="Special">[</span><span class="Constant">'number'</span><span class="Special">]}</span><span class="Constant">&lt;/p&gt;</span>
+<span class="Constant">			&lt;hr&gt;</span>
+<span class="Constant">			&lt;h1&gt;Preço total: &lt;/h1&gt;</span>
+<span class="Constant">			&lt;h2&gt;</span><span class="Special">{</span><span class="Operator">$</span><span class="Identifier">_SESSION</span><span class="Special">[</span><span class="Constant">'totalCompra'</span><span class="Special">]}</span><span class="Constant"> Reais&lt;/h2&gt;</span>
+<span class="Constant">		&lt;/div&gt;</span>
+<span class="Constant">		&lt;hr&gt;</span>
+<span class="Constant">	&quot;</span>;
+
+	<span class="Statement">return</span> <span class="Constant">'&lt;table&gt;'</span> <span class="Operator">.</span> <span class="Operator">$</span><span class="Identifier">finalHtml</span> <span class="Operator">.</span> <span class="Constant">'&lt;/table&gt;'</span> <span class="Operator">.</span> <span class="Operator">$</span><span class="Identifier">dadosCompradorHtml</span>;
+<span class="Special">}</span>
+<span class="Comment">/*</span>
+<span class="Comment">echo '&lt;pre&gt;';</span>
+<span class="Comment">echo '&lt;hr&gt;';</span>
+<span class="Comment">var_dump($_SESSION);</span>
+<span class="Comment">echo '&lt;hr&gt;';</span>
+<span class="Comment">var_dump($_POST);</span>
+<span class="Comment">echo '&lt;hr&gt;';</span>
+<span class="Comment">echo '&lt;/pre&gt;';</span>
+<span class="Comment"> */</span>
+<span class="Comment">// inclui os arquivos do phpmailer</span>
+<span class="PreProc">include_once</span> <span class="Special">(</span><span class="Constant">'phpmailer/Exception.php'</span><span class="Special">)</span>;
+<span class="PreProc">include_once</span> <span class="Special">(</span><span class="Constant">'phpmailer/PHPMailer.php'</span><span class="Special">)</span>;
+<span class="PreProc">include_once</span> <span class="Special">(</span><span class="Constant">'phpmailer/SMTP.php'</span><span class="Special">)</span>;
+<span class="PreProc">include_once</span> <span class="Special">(</span><span class="Constant">'phpmailer/OAuth.php'</span><span class="Special">)</span>;
+<span class="PreProc">include_once</span> <span class="Special">(</span><span class="Constant">'phpmailer/POP3.php'</span><span class="Special">)</span>;
+
+<span class="Comment">//----------------------------------------------------------------</span>
+<span class="Comment">// vars para fazer a vida mais facil</span>
+
+<span class="Comment">// ****adicione os dados do seu email para funcionar, (email e senha)****</span>
+
+<span class="Operator">$</span><span class="Identifier">quemManda</span> <span class="Operator">=</span> <span class="Constant">''</span>;                         <span class="Comment">// seu email          </span>
+<span class="Operator">$</span><span class="Identifier">nomeManda</span> <span class="Operator">=</span> <span class="Constant">'IFRS BG Compras'</span>;          <span class="Comment">// seu nome</span>
+<span class="Operator">$</span><span class="Identifier">senha</span> <span class="Operator">=</span> <span class="Constant">''</span>;                             <span class="Comment">// sua senha</span>
+<span class="Operator">$</span><span class="Identifier">quemRecebe</span> <span class="Operator">=</span> <span class="Operator">$</span><span class="Identifier">_POST</span><span class="Special">[</span><span class="Constant">'email'</span><span class="Special">]</span>;           <span class="Comment">// email de quem recebe</span>
+<span class="Operator">$</span><span class="Identifier">nomeRecebe</span> <span class="Operator">=</span> <span class="Operator">$</span><span class="Identifier">_POST</span><span class="Special">[</span><span class="Constant">'nome'</span><span class="Special">]</span>;            <span class="Comment">// nome de quem recebe</span>
+<span class="Operator">$</span><span class="Identifier">assuntoMsg</span> <span class="Operator">=</span> <span class="Constant">'Compra efetuada com sucesso!'</span> ;     <span class="Comment">// assunto do email</span>
+<span class="Operator">$</span><span class="Identifier">corpoMsg</span> <span class="Operator">=</span> geraHtml<span class="Special">(</span><span class="Operator">$</span><span class="Identifier">dif</span><span class="Special">)</span>;              <span class="Comment">// corpo geral</span>
+<span class="Comment">//----------------------------------------------------------------</span>
+
+<span class="PreProc">use</span> PHPMailer\PHPMailer\PHPMailer;
+<span class="PreProc">use</span> PHPMailer\PHPMailer\SMTP;
+
+<span class="Comment">// Inicia a classe PHPMailer</span>
+<span class="Operator">$</span><span class="Identifier">mail</span> <span class="Operator">=</span> <span class="PreProc">new</span> PHPMailer<span class="Special">()</span>;
+
+<span class="Comment">// Define os dados do servidor e tipo de conexão</span>
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>IsSMTP<span class="Special">()</span>;                   <span class="Comment">// Define que a mensagem será SMTP</span>
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>Host <span class="Operator">=</span> <span class="Constant">&quot;smtp.gmail.com&quot;</span>;    <span class="Comment">// Endereço do servidor SMTP</span>
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>Port <span class="Operator">=</span> <span class="Constant">587</span>;                 <span class="Comment">// Porta TCP para a conexão</span>
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>SMTPAutoTLS <span class="Operator">=</span> <span class="Constant">true</span>;         <span class="Comment">// Utiliza TLS Automaticamente se disponível</span>
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>SMTPAuth <span class="Operator">=</span> <span class="Constant">true</span>;            <span class="Comment">// Usar autenticação SMTP - Sim</span>
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>Username <span class="Operator">=</span> <span class="Operator">$</span><span class="Identifier">quemManda</span>;      <span class="Comment">// Usuário de e-mail</span>
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>Password <span class="Operator">=</span> <span class="Operator">$</span><span class="Identifier">senha</span>;          <span class="Comment">// Senha do usuário de e-mail</span>
+
+<span class="Comment">// Define o remetente (você)</span>
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>From <span class="Operator">=</span> <span class="Operator">$</span><span class="Identifier">quemManda</span>;      <span class="Comment">// Seu e-mail</span>
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>FromName <span class="Operator">=</span> <span class="Operator">$</span><span class="Identifier">nomeManda</span>;  <span class="Comment">// Seu nome</span>
+
+<span class="Comment">// Define os destinatário(s)</span>
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>AddAddress<span class="Special">(</span><span class="Operator">$</span><span class="Identifier">quemRecebe</span>, <span class="Operator">$</span><span class="Identifier">nomeRecebe</span><span class="Special">)</span>;                  <span class="Comment">// Os campos podem ser substituidos por variáveis</span>
+
+<span class="Comment">// Define os dados técnicos da Mensagem</span>
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>IsHTML<span class="Special">(</span><span class="Constant">true</span><span class="Special">)</span>;         <span class="Comment">// Define que o e-mail será enviado como HTML</span>
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>CharSet <span class="Operator">=</span> <span class="Constant">'UTF-8'</span>;    <span class="Comment">// Charset da mensagem (opcional)</span>
+
+<span class="Comment">// Define a mensagem (Texto e Assunto)</span>
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>Subject <span class="Operator">=</span> <span class="Operator">$</span><span class="Identifier">assuntoMsg</span>;  <span class="Comment">// Assunto da msg</span>
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>Body <span class="Operator">=</span> <span class="Operator">$</span><span class="Identifier">corpoMsg</span>;       <span class="Comment">// corpo da msg	</span>
+
+<span class="Comment">// Define os anexos</span>
+<span class="Repeat">foreach</span> <span class="Special">(</span><span class="Operator">$</span><span class="Identifier">_SESSION</span><span class="Special">[</span><span class="Constant">'carrinho'</span><span class="Special">]</span> <span class="Repeat">as</span> <span class="Operator">$</span><span class="Identifier">key</span> <span class="Operator">=</span><span class="Operator">&gt;</span> <span class="Operator">$</span><span class="Identifier">value</span><span class="Special">)</span> <span class="Special">{</span>
+	<span class="Operator">$</span><span class="Identifier">nomeAnex</span> <span class="Operator">=</span>  <span class="Constant">'imagem'</span> <span class="Operator">.</span> <span class="Function">rand</span><span class="Special">(</span><span class="Constant">0</span>, <span class="Constant">10</span><span class="Special">)</span> <span class="Operator">.</span> <span class="Constant">'.img'</span>;
+	<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>AddAttachment<span class="Special">(</span><span class="Operator">$</span><span class="Identifier">value</span><span class="Special">[</span><span class="Constant">'imagem'</span><span class="Special">]</span>, <span class="Operator">$</span><span class="Identifier">nomeAnex</span><span class="Special">)</span>;
+<span class="Special">}</span>
+<span class="Comment">//$mail-&gt;AddAttachment($dirAnex1, $nomeAnex1);   // Insere um anexo</span>
+<span class="Comment">// Envia o e-mail</span>
+<span class="Operator">$</span><span class="Identifier">enviado</span> <span class="Operator">=</span> <span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>Send<span class="Special">()</span>;
+
+<span class="Comment">// Limpa os destinatários e os anexos</span>
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>ClearAllRecipients<span class="Special">()</span>;
+<span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>ClearAttachments<span class="Special">()</span>;
+
+<span class="Comment">// Exibe uma mensagem de resultado </span>
+<span class="Repeat">if</span> <span class="Special">(</span><span class="Operator">$</span><span class="Identifier">enviado</span><span class="Special">)</span> <span class="Special">{</span>
+	<span class="PreProc">echo</span> <span class="Constant">&quot;E-mail enviado com sucesso!&quot;</span>;
+<span class="Special">}</span> <span class="Repeat">else</span> <span class="Special">{</span>
+	<span class="PreProc">echo</span> <span class="Constant">&quot;Não foi possível enviar o e-mail.&quot;</span>;
+	<span class="PreProc">echo</span> <span class="Constant">&quot;&lt;b&gt;Informações do erro:&lt;/b&gt; &quot;</span> <span class="Operator">.</span> <span class="Operator">$</span><span class="Identifier">mail</span><span class="Type">-&gt;</span>ErrorInfo;
+<span class="Special">}</span>
+
+<span class="Special">?&gt;</span>
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

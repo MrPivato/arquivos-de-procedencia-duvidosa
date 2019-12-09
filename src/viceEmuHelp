@@ -1,0 +1,11 @@
+vsid, the SID player
+x64, the fast C64 emulator
+x64sc, the accurate C64 emulator
+x64dtv, the C64DTV emulator
+x128, the C128 emulator
+xvic, the VIC20 emulator
+xpet, the PET emulator
+xplus4, the PLUS4 emulator
+xcbm2, the CBM-II emulator (CRTC models)
+xcbm5x0, the CBM-II emulator (VIC-II models)
+xscpu64, the SCPU64 emulator

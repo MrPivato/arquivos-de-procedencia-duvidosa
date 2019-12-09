@@ -1,0 +1,6 @@
+sudo -i
+mkdir -p /mnt/disk
+mount -o loop disk1.iso /mnt/disk
+
+sudo mount -o loop /home/mrpivato/Documents/My\ Games/FS2013.iso /mnt/disk
+sudo mount -o loop /home/mrpivato/Documents/My\ Games/NEEDU2.iso /mnt/disk
